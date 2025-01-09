@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: hellodocker-deployment
+  name: cicd-deployment
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: hellodocker-deployment
+      app: cicd-deployment
   template:
     metadata:
       labels:
-        app: hellodocker-deployment
+        app: cicd-deployment
     spec:
       containers:
-      - name: hellodocker-deployment
-        image: jamesndubuisi/hellodocker
+      - name: cicd-deployment
+        image: nitishsancs/Jenkins-CICD
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 80
@@ -23,10 +23,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: hellodocker-service
+  name: cicd-service
 spec:
   selector:
-    app: hellodocker-deployment
+    app: cicd-deployment
   ports:
   - protocol: TCP
     port: 80
